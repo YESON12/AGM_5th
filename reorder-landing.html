@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>2주 안에 또 시키면 15% 할인 | 배달한끼 재주문 혜택</title>
+<!-- 학습용 가상 브랜드 '배달한끼' (실존 서비스와 무관) -->
+<meta name="description" content="먹었던 그 가게, 2주 안에 다시 주문하면 15% 할인! 앱에서 바로 받으세요.">
+<style>
+:root{
+  --mint:#2ac1bc; --mint-dark:#14908c; --mint-soft:#e6f8f7;
+  --ink:#1c1c1e; --sub:#5f6672; --line:#e8eaed; --bg:#f6f7f9; --white:#fff;
+  --pop:#ff5a4f; --yellow:#ffd84d;
+  --gutter:clamp(14px,5vw,40px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic","Noto Sans KR",sans-serif;color:var(--ink);background:var(--white);line-height:1.5;-webkit-font-smoothing:antialiased;
+  word-break:keep-all;overflow-wrap:break-word;padding-bottom:calc(76px + env(safe-area-inset-bottom))}
+.in{width:100%;max-width:1080px;margin:0 auto;padding-inline:var(--gutter)}
+section{padding-block:clamp(36px,8vw,72px)}
+h2{font-size:clamp(20px,5.2vw,32px);line-height:1.3;letter-spacing:-.02em;margin-bottom:8px}
+h2 em{font-style:normal;color:var(--mint-dark)}
+.lead{color:var(--sub);font-size:clamp(13px,3.6vw,16px);margin-bottom:24px}
+.eyebrow{display:inline-block;font-size:12px;font-weight:800;color:var(--mint-dark);background:var(--mint-soft);padding:4px 10px;border-radius:99px;margin-bottom:12px;letter-spacing:.04em}
+.btn{display:block;text-align:center;text-decoration:none;font-weight:800;font-size:clamp(15px,4.4vw,18px);padding:16px 20px;border-radius:14px;transition:transform .12s,box-shadow .12s}
+.btn:active{transform:scale(.98)}
+.btn:focus-visible{outline:3px solid var(--yellow);outline-offset:2px}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-white{background:#fff;color:var(--mint-dark);box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.btn-mint{background:var(--mint);color:#fff}
+
+/* ---- top bar (desktop / fold-open) ---- */
+.topbar{display:none}
+
+/* ---- 1. hero ---- */
+.hero{background:linear-gradient(160deg,var(--mint) 0%,#16aaa5 100%);color:#fff;overflow:hidden;padding-block:20px 40px}
+.hero .grid{display:grid;gap:28px;align-items:center}
+.brand{font-weight:900;font-size:15px;letter-spacing:-.02em;margin-bottom:22px}
+.hero .copy{text-align:center}
+.hero .tag{display:inline-block;background:rgba(255,255,255,.2);padding:6px 14px;border-radius:99px;font-size:13px;font-weight:700;margin-bottom:14px}
+.hero h1{font-size:clamp(23px,7.2vw,40px);line-height:1.28;letter-spacing:-.03em;font-weight:900}
+.hero h1 b{color:var(--yellow)}
+.big{font-size:clamp(64px,22vw,112px);font-weight:900;line-height:1;margin:14px 0 6px;letter-spacing:-.04em;text-shadow:0 6px 0 rgba(0,0,0,.12)}
+.big small{font-size:.46em}
+.chips{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:12px 0 22px}
+.chips>span{font-size:clamp(11px,3.2vw,13px);font-weight:700;background:rgba(0,0,0,.16);padding:5px 10px;border-radius:99px}
+.cd-wrap{margin-bottom:18px}
+.cd-label{font-size:12px;opacity:.92;margin-bottom:8px}
+.countdown{display:flex;justify-content:center;gap:8px}
+.countdown div{background:rgba(0,0,0,.18);border-radius:10px;padding:7px 0;width:clamp(46px,14vw,58px)}
+.countdown strong{display:block;font-size:clamp(17px,5vw,22px);font-variant-numeric:tabular-nums}
+.countdown span{font-size:11px;opacity:.85}
+.hero .note{font-size:12px;opacity:.9;margin-top:10px}
+.qr{display:none}
+
+/* phone mock (benefit illustration) */
+.visual{display:flex;justify-content:center}
+.phone{position:relative;width:min(250px,68vw);background:#111;border-radius:34px;padding:9px;box-shadow:0 24px 50px rgba(0,0,0,.28)}
+.phone .scr{background:#f4f5f7;border-radius:26px;overflow:hidden;color:var(--ink)}
+.phone .bar{background:#fff;padding:12px 14px 8px;font-weight:800;font-size:13px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between}
+.phone .bar i{font-style:normal;color:var(--mint-dark);font-size:11px}
+.ocard{background:#fff;margin:10px;border-radius:14px;padding:12px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
+.ocard .top{display:flex;gap:10px;align-items:center}
+.ocard svg{flex:none;width:44px;height:44px}
+.ocard b{display:block;font-size:12.5px;line-height:1.3}
+.ocard small{font-size:11px;color:var(--sub)}
+.ocard .px{display:flex;justify-content:space-between;font-size:11.5px;margin-top:10px;padding-top:8px;border-top:1px dashed var(--line)}
+.ocard .px s{color:#9aa0a8}
+.ocard .px strong{color:var(--pop)}
+.ocard .go{display:block;margin-top:10px;background:var(--mint);color:#fff;text-align:center;font-weight:800;font-size:12.5px;padding:9px;border-radius:10px;position:relative}
+.ocard .go em{position:absolute;top:-9px;right:-4px;background:var(--pop);color:#fff;font-style:normal;font-size:10.5px;padding:2px 7px;border-radius:99px}
+.ocard.dim{opacity:.55}
+.ocard.dim .go{background:#cfd3d8}
+.ticket{position:absolute;left:-26px;bottom:34px;background:var(--yellow);color:var(--ink);font-weight:900;font-size:13px;padding:10px 14px;border-radius:12px;transform:rotate(-8deg);box-shadow:0 8px 18px rgba(0,0,0,.2)}
+.ticket small{display:block;font-size:10px;font-weight:700;opacity:.75}
+
+/* ---- 2. steps ---- */
+.steps{display:grid;gap:12px}
+.step{display:flex;gap:14px;align-items:center;background:var(--bg);border-radius:16px;padding:16px}
+.step .ic{flex:none;width:52px;height:52px;border-radius:14px;background:#fff;display:grid;place-items:center;position:relative}
+.step .ic svg{width:30px;height:30px}
+.step .ic i{position:absolute;top:-7px;left:-7px;width:22px;height:22px;border-radius:50%;background:var(--mint);color:#fff;font:900 12px/22px sans-serif;text-align:center}
+.step b{display:block;font-size:15px}
+.step span{font-size:13px;color:var(--sub)}
+
+/* ---- 3. benefit ---- */
+.coupon-sec{background:var(--mint-soft)}
+.bgrid{display:grid;gap:16px}
+.coupon{display:flex;background:#fff;border-radius:18px;overflow:hidden;box-shadow:0 8px 24px rgba(42,193,188,.2)}
+.coupon .l{flex:none;width:clamp(86px,28vw,120px);background:var(--mint);color:#fff;display:grid;place-items:center;text-align:center;padding:16px 6px;border-right:2px dashed rgba(255,255,255,.7)}
+.coupon .l strong{font-size:clamp(28px,8vw,38px);font-weight:900;line-height:1;display:block}
+.coupon .l span{font-size:12px;font-weight:700}
+.coupon .r{padding:16px}
+.coupon .r b{font-size:16px}
+.coupon .r ul{list-style:none;margin-top:8px;font-size:13px;color:var(--sub)}
+.coupon .r li::before{content:"✓ ";color:var(--mint-dark);font-weight:900}
+.card{background:#fff;border-radius:16px;padding:18px}
+.timeline h3,.example h3{font-size:14px;margin-bottom:14px}
+.tl{position:relative;height:10px;background:#d9efee;border-radius:99px;margin:26px 6px 34px}
+.tl i{position:absolute;inset:0;border-radius:99px;background:linear-gradient(90deg,var(--mint),#7ddcd8)}
+.tl b{position:absolute;top:-24px;font-size:11px;font-weight:800;color:var(--ink);white-space:nowrap}
+.tl b:first-of-type{left:0}.tl b:last-of-type{right:0}
+.tl u{position:absolute;top:18px;font-size:11px;color:var(--sub);text-decoration:none;white-space:nowrap}
+.tl u:nth-of-type(1){left:0}.tl u:nth-of-type(2){right:0}
+.tl-note{font-size:13px;background:var(--mint-soft);border-radius:10px;padding:10px 12px;color:var(--mint-dark);font-weight:700}
+.example .row{display:flex;justify-content:space-between;padding:5px 0;font-size:14px}
+.example .row.total{border-top:1px solid var(--line);margin-top:6px;padding-top:10px;font-weight:800}
+.example .row.total em{font-style:normal;color:var(--pop)}
+.example .cap{font-size:11px;color:var(--sub);margin-top:6px}
+
+/* ---- 4. why ---- */
+.why{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.why>div{border:1px solid var(--line);border-radius:16px;padding:18px 14px}
+.why .ic{font-size:28px;margin-bottom:6px}
+.why b{display:block;font-size:14px;margin-bottom:2px}
+.why span{font-size:12px;color:var(--sub)}
+
+/* ---- 5. amount preview ---- */
+.calc-sec{background:var(--ink);color:#fff}
+.calc-sec h2 em{color:var(--yellow)}
+.calc-sec .lead{color:#b6bcc6}
+.calc{display:grid;gap:12px}
+.calc div{background:rgba(255,255,255,.08);border-radius:14px;padding:16px;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.calc small{display:block;font-size:12px;color:#b6bcc6}
+.calc b{font-size:clamp(15px,4.2vw,18px)}
+.calc strong{font-size:clamp(18px,5.4vw,24px);color:var(--mint)}
+.calc .max strong{color:var(--yellow)}
+.calc-note{font-size:12px;color:#8f96a2;margin-top:14px}
+
+/* ---- 6. faq ---- */
+.faq{max-width:760px;margin-inline:auto}
+details{border-bottom:1px solid var(--line);padding:16px 0}
+summary{cursor:pointer;font-weight:700;font-size:15px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--sub);font-size:20px;line-height:1}
+details[open] summary::after{content:"–"}
+details p{margin-top:10px;font-size:13px;color:var(--sub)}
+
+/* ---- 7. final ---- */
+.final{text-align:center;background:var(--mint-soft)}
+.final .recap{display:inline-flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-bottom:18px}
+.final .recap>span{font-size:12.5px;font-weight:700;background:#fff;color:var(--mint-dark);padding:5px 11px;border-radius:99px}
+.final .cta-box{max-width:420px;margin-inline:auto}
+.stores{display:flex;gap:10px;margin-top:12px}
+.stores a{flex:1;padding:12px;border-radius:12px;background:#fff;border:1px solid var(--line);text-decoration:none;color:var(--ink);font-weight:700;font-size:13px}
+.terms{background:var(--bg);padding-block:24px;font-size:11px;color:var(--sub)}
+.terms h3{font-size:12px;margin-bottom:8px;color:var(--ink)}
+.terms li{margin-left:14px;margin-bottom:4px}
+
+/* ---- sticky bottom CTA (mobile / cover screen) ---- */
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:10;padding:10px var(--gutter) calc(10px + env(safe-area-inset-bottom));background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);transition:transform .25s}
+.sticky.hide{transform:translateY(110%)}
+.sticky .inner{max-width:480px;margin:0 auto;display:flex;align-items:center;gap:10px}
+.sticky p{font-size:11.5px;line-height:1.3;color:var(--sub);flex:1;min-width:0}
+.sticky p b{display:block;color:var(--ink);font-size:14px}
+.sticky .btn{flex:none;padding:12px 18px;font-size:15px}
+
+/* ---- tiny cover screens (≤340px, e.g. Galaxy Z Fold cover 280px) ---- */
+@media (max-width:340px){
+  .sticky p{font-size:10.5px}
+  .sticky p b{font-size:13px}
+  .sticky .btn{padding:12px 14px;font-size:14px}
+  .coupon{flex-direction:column}
+  .coupon .l{width:auto;border-right:0;border-bottom:2px dashed rgba(255,255,255,.7)}
+  .ticket{left:-10px}
+  .stores{flex-direction:column}
+  .ocard small{display:none}
+  .ocard b{font-size:11.5px}
+  .phone{width:min(220px,78vw)}
+}
+
+/* ---- 600+ : fold-open / tablet ---- */
+@media (min-width:600px){
+  .steps{grid-template-columns:repeat(3,1fr)}
+  .step{flex-direction:column;text-align:center;padding:24px 16px}
+  .why{grid-template-columns:repeat(4,1fr)}
+  .calc{grid-template-columns:repeat(3,1fr)}
+  .calc div{flex-direction:column;align-items:flex-start}
+}
+
+/* ---- 760+ : unfolded fold / desktop ---- */
+@media (min-width:760px){
+  body{padding-bottom:0}
+  .sticky{display:none}
+  .topbar{display:block;position:sticky;top:0;z-index:20;background:rgba(255,255,255,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .topbar .in{display:flex;align-items:center;justify-content:space-between;height:60px}
+  .topbar .logo{font-weight:900;color:var(--mint-dark);font-size:18px}
+  .topbar .mid{font-size:14px;color:var(--sub)}
+  .topbar .mid b{color:var(--ink)}
+  .topbar .btn{padding:10px 20px;font-size:14px;border-radius:10px}
+  .hero{padding-block:56px 72px}
+  .hero .brand{display:none}
+  .hero .grid{grid-template-columns:1.05fr .95fr;gap:48px}
+  .hero .copy{text-align:left}
+  .chips,.countdown{justify-content:flex-start}
+  .hero .btn{display:inline-block;min-width:300px}
+  .qr{display:flex;align-items:center;gap:16px;margin-top:22px;background:rgba(255,255,255,.14);border-radius:16px;padding:14px 16px;max-width:420px}
+  .qr .box{flex:none;width:96px;height:96px;background:#fff;border-radius:10px;padding:6px;display:grid;place-items:center;color:var(--ink);font-size:10px}
+  .qr .box svg{width:100%;height:100%;display:block}
+  .qr p{font-size:13px;line-height:1.45;text-align:left}
+  .qr p b{display:block;font-size:14px;margin-bottom:2px}
+  .phone{width:270px}
+  .bgrid{grid-template-columns:1.1fr .9fr;align-items:start;gap:24px}
+  .bleft{display:grid;gap:16px}
+  .final .cta-box{max-width:460px}
+}
+@media (min-width:1100px){
+  .hero .grid{gap:80px}
+  .phone{width:290px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- 데스크탑 상단 바 (CTA 상시 노출) -->
+<div class="topbar">
+  <div class="in">
+    <span class="logo">배달한끼</span>
+    <span class="mid"><b>같은 가게 재주문 <span data-b="rate">15</span>% 할인</b> · 최대 <span data-b="cap">3,000</span>원</span>
+    <a class="btn btn-mint js-cta" data-pos="topbar" href="#">앱에서 받기</a>
+  </div>
+</div>
+
+<!-- 1. 히어로 -->
+<header class="hero">
+  <div class="in">
+    <div class="brand">배달한끼</div>
+    <div class="grid">
+      <div class="copy">
+        <div class="tag">🍜 다시 시켜 먹는 단골님께</div>
+        <h1>그 맛, 또 생각나죠?<br><b>주문 후 <span data-b="weeks">2</span>주 안에</b> 같은 가게 재주문하면</h1>
+        <div class="big"><span data-b="rate">15</span><small>%</small></div>
+        <div class="chips">
+          <span>같은 가게 한정</span>
+          <span>최대 <span data-b="cap">3,000</span>원</span>
+          <span><span data-b="min">12,000</span>원 이상 주문 시</span>
+        </div>
+
+        <div class="cd-wrap" id="cdWrap" hidden>
+          <div class="cd-label">⏰ 내 혜택 종료까지</div>
+          <div class="countdown">
+            <div><strong id="cd-d">00</strong><span>일</span></div>
+            <div><strong id="cd-h">00</strong><span>시간</span></div>
+            <div><strong id="cd-m">00</strong><span>분</span></div>
+            <div><strong id="cd-s">00</strong><span>초</span></div>
+          </div>
+        </div>
+
+        <a class="btn btn-white js-cta" data-pos="hero" href="#">앱에서 <span data-b="rate">15</span>% 할인 받기</a>
+        <p class="note">앱 설치 후 로그인하면 쿠폰이 자동 지급돼요</p>
+
+        <div class="qr" id="qrBox">
+          <div class="box" id="qrCode">QR</div>
+          <p><b>PC에서 보고 계신가요?</b>휴대폰 카메라로 QR을 스캔하면 앱 설치 페이지로 이동해요.</p>
+        </div>
+      </div>
+
+      <!-- 혜택을 보여주는 앱 화면 목업 -->
+      <div class="visual" aria-hidden="true">
+        <div class="phone">
+          <div class="scr">
+            <div class="bar">주문내역 <i>재주문 쿠폰 1장</i></div>
+            <div class="ocard">
+              <div class="top">
+                <svg viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="#fff1d6"/><path d="M10 26h28a14 14 0 0 1-28 0z" fill="#ff8a3d"/><rect x="8" y="23" width="32" height="4" rx="2" fill="#ffb067"/><path d="M18 18c-2-3 2-4 0-7M25 18c-2-3 2-4 0-7M32 18c-2-3 2-4 0-7" stroke="#f0a24c" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+                <div><b>맛있는 치킨집 <span style="color:var(--mint-dark)">단골</span></b><small>3일 전 주문 · 지금 재주문 가능</small></div>
+              </div>
+              <div class="px"><span>치킨 + 사이드 <s data-b="exPrice">22,000</s></span><strong>-<span data-b="exOff">3,000</span>원</strong></div>
+              <span class="go">다시 주문하기<em><span data-b="rate">15</span>% OFF</em></span>
+            </div>
+            <div class="ocard dim">
+              <div class="top">
+                <svg viewBox="0 0 48 48"><rect width="48" height="48" rx="12" fill="#e6f8f7"/><circle cx="24" cy="26" r="11" fill="#2ac1bc"/><circle cx="24" cy="26" r="6" fill="#fff"/></svg>
+                <div><b>다른 가게</b><small>혜택 대상 아님 (같은 가게만)</small></div>
+              </div>
+            </div>
+          </div>
+          <div class="ticket"><small>같은 가게 재주문</small><span data-b="rate">15</span>% 쿠폰</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 2. 이용 방법 -->
+<section>
+  <div class="in">
+    <span class="eyebrow">HOW IT WORKS</span>
+    <h2>받는 방법은 <em>딱 3단계</em></h2>
+    <p class="lead">복잡한 쿠폰 입력 없이, 주문하면 자동으로 적용돼요.</p>
+    <div class="steps">
+      <div class="step"><div class="ic"><i>1</i><svg viewBox="0 0 32 32" fill="none" stroke="#14908c" stroke-width="2.4" stroke-linecap="round"><rect x="9" y="3" width="14" height="26" rx="3"/><path d="M14 25h4"/></svg></div><div><b>앱 열고 로그인</b><span>쿠폰함에 재주문 쿠폰이 자동으로 들어와요</span></div></div>
+      <div class="step"><div class="ic"><i>2</i><svg viewBox="0 0 32 32" fill="none" stroke="#14908c" stroke-width="2.4" stroke-linecap="round"><rect x="5" y="5" width="22" height="22" rx="4"/><path d="M10 12h12M10 17h12M10 22h7"/></svg></div><div><b>'주문내역'에서 그 가게 선택</b><span>최근 주문한 가게를 한 번에 다시 찾아요</span></div></div>
+      <div class="step"><div class="ic"><i>3</i><svg viewBox="0 0 32 32" fill="none" stroke="#14908c" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h20v16l-3-2-3 2-3-2-3 2-3-2-5 2z"/><path d="M11 13h10M11 18h6"/></svg></div><div><b>결제 시 <span data-b="rate">15</span>% 자동 할인</b><span>주문 후 <span data-b="days">14</span>일(<span data-b="weeks">2</span>주) 안에 주문하면 끝!</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. 혜택 상세 -->
+<section class="coupon-sec" id="benefit">
+  <div class="in">
+    <span class="eyebrow">BENEFIT</span>
+    <h2>같은 가게 재주문 <em><span data-b="rate">15</span>% 쿠폰</em></h2>
+    <p class="lead">가게에서 주문한 날부터 <span data-b="days">14</span>일(<span data-b="weeks">2</span>주) 이내, 같은 가게에서만 쓸 수 있어요.</p>
+    <div class="bgrid">
+      <div class="bleft">
+        <div class="coupon">
+          <div class="l"><div><strong><span data-b="rate">15</span>%</strong><span>재주문 할인</span></div></div>
+          <div class="r">
+            <b>단골 재주문 쿠폰</b>
+            <ul>
+              <li>주문일 후 <span data-b="days">14</span>일(<span data-b="weeks">2</span>주) 이내, 같은 가게 한정</li>
+              <li>최대 할인 <span data-b="cap">3,000</span>원</li>
+              <li>최소 주문금액 <span data-b="min">12,000</span>원</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card timeline">
+          <h3>혜택 사용 기간</h3>
+          <div class="tl"><i></i><b>주문일</b><b>D+<span data-b="days">14</span></b><u>첫 주문</u><u>혜택 종료</u></div>
+          <div class="tl-note">이 기간 안에 같은 가게 재주문 → <span data-b="rate">15</span>% 할인</div>
+        </div>
+      </div>
+      <div class="card example">
+        <h3>이렇게 할인돼요 (예시)</h3>
+        <div class="row"><span>치킨 + 사이드</span><span><span data-b="exPrice">22,000</span>원</span></div>
+        <div class="row"><span>재주문 <span data-b="rate">15</span>% 할인</span><span>-<span data-b="exOff">3,000</span>원</span></div>
+        <div class="row total"><span>실 결제금액</span><em><span data-b="exPay">19,000</span>원</em></div>
+        <p class="cap">※ 예시 금액이며, 배달팁 및 다른 할인에 따라 달라질 수 있어요.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 재주문 이유 -->
+<section>
+  <div class="in">
+    <span class="eyebrow">WHY REORDER</span>
+    <h2>다시 시키면 <em>더 편하고, 더 싸요</em></h2>
+    <p class="lead">실패 없는 선택, 이제 할인까지.</p>
+    <div class="why">
+      <div><div class="ic">😋</div><b>검증된 맛</b><span>이미 먹어본 맛이라 고민 끝</span></div>
+      <div><div class="ic">⚡</div><b>빠른 주문</b><span>주문내역에서 2탭이면 재주문</span></div>
+      <div><div class="ic">💸</div><b><span data-b="rate">15</span>% 절약</b><span>주문할 때마다 자동 적용</span></div>
+      <div><div class="ic">🛵</div><b>배달 안심</b><span>내 주소·메뉴 기억해서 간편</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. 금액별 할인 미리보기 -->
+<section class="calc-sec">
+  <div class="in">
+    <span class="eyebrow">PREVIEW</span>
+    <h2>내 주문, <em>얼마나 할인될까?</em></h2>
+    <p class="lead"><span data-b="rate">15</span>% 할인, 최대 <span data-b="cap">3,000</span>원까지 적용돼요.</p>
+    <div class="calc" id="calc"></div>
+    <p class="calc-note">※ 최소 주문금액 <span data-b="min">12,000</span>원 이상, 배달팁 제외 기준 예시입니다.</p>
+  </div>
+</section>
+
+<!-- 6. FAQ -->
+<section>
+  <div class="in">
+    <div class="faq">
+      <span class="eyebrow">FAQ</span>
+      <h2>궁금한 점</h2>
+      <details><summary>어떤 가게에서 쓸 수 있나요?</summary><p>주문 후 <span data-b="days">14</span>일(<span data-b="weeks">2</span>주) 이내에, 주문했던 같은 가게에서만 사용할 수 있어요. 일부 가게는 제외될 수 있어요.</p></details>
+      <details><summary>할인은 얼마까지 되나요?</summary><p><span data-b="rate">15</span>% 할인이며 최대 <span data-b="cap">3,000</span>원까지, 최소 주문금액 <span data-b="min">12,000</span>원 이상일 때 적용돼요.</p></details>
+      <details><summary>쿠폰은 어디서 확인하나요?</summary><p>앱 하단 '내 정보 &gt; 쿠폰함'에서 확인할 수 있고, 결제 시 자동 적용돼요.</p></details>
+      <details><summary>다른 쿠폰과 같이 쓸 수 있나요?</summary><p>중복 사용 여부는 쿠폰 종류에 따라 달라요. 결제 화면에서 적용 가능한 혜택을 확인해주세요.</p></details>
+      <details><summary>이미 앱이 설치되어 있어요.</summary><p>앱을 최신 버전으로 업데이트한 뒤 접속하시면 쿠폰이 지급돼요.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- 7. 마지막 CTA -->
+<section class="final">
+  <div class="in">
+    <h2>지금 앱에서<br><em><span data-b="rate">15</span>% 할인</em> 챙기세요</h2>
+    <p class="lead">같은 가게 재주문, 주문 후 <span data-b="days">14</span>일(<span data-b="weeks">2</span>주) 동안만!</p>
+    <div class="recap"><span>같은 가게 한정</span><span>최대 <span data-b="cap">3,000</span>원</span><span><span data-b="min">12,000</span>원 이상 주문</span></div>
+    <div class="cta-box">
+      <a class="btn btn-dark js-cta" data-pos="final" href="#">앱 다운로드 하러 가기</a>
+      <div class="stores">
+        <a class="js-cta" data-pos="final-ios" data-os="ios" href="#">App Store</a>
+        <a class="js-cta" data-pos="final-android" data-os="android" href="#">Google Play</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. 유의사항 -->
+<footer class="terms">
+  <div class="in">
+    <h3>이벤트 유의사항</h3>
+    <ul>
+      <li>본 쿠폰은 주문일로부터 <span data-b="days">14</span>일(<span data-b="weeks">2</span>주) 이내, 동일 가게 재주문 시 1회 사용 가능합니다.</li>
+      <li><span data-b="rate">15</span>% 할인, 최대 할인 금액 <span data-b="cap">3,000</span>원, 최소 주문금액 <span data-b="min">12,000</span>원이며 운영 사정에 따라 변경될 수 있습니다.</li>
+      <li>배달팁, 일부 제외 메뉴/가게에는 적용되지 않을 수 있습니다.</li>
+      <li>주문 취소 시 쿠폰은 유효기간 내에 한해 복원됩니다.</li>
+    </ul>
+  </div>
+</footer>
+
+<!-- 모바일 하단 고정 CTA -->
+<div class="sticky" id="sticky">
+  <div class="inner">
+    <p><b>재주문 <span data-b="rate">15</span>% 할인</b><span>같은 가게 · 최대 <span data-b="cap">3,000</span>원</span></p>
+    <a class="btn btn-mint js-cta" data-pos="sticky" href="#">앱에서 받기</a>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script>
+/* ===== 설정: 실제 값으로 교체하세요 (혜택 숫자는 이 한 곳에서만 관리 → 페이지 전체 자동 반영) ===== */
+var BENEFIT = { rate:15, days:14, weeks:2, cap:3000, min:12000, examplePrice:22000 };
+var STORE = {
+  ios:     "https://example.com/hankki/ios",      // 학습용 자리표시 링크
+  android: "https://example.com/hankki/android",
+  desktop: "https://example.com/hankki"
+};
+
+function won(n){ return n.toLocaleString("ko-KR"); }
+function off(price){ return Math.min(BENEFIT.cap, Math.round(price * BENEFIT.rate / 100)); }
+var exOff = off(BENEFIT.examplePrice);
+var VALUES = { rate:BENEFIT.rate, days:BENEFIT.days, weeks:BENEFIT.weeks, cap:won(BENEFIT.cap), min:won(BENEFIT.min),
+  exPrice:won(BENEFIT.examplePrice), exOff:won(exOff), exPay:won(BENEFIT.examplePrice - exOff) };
+document.querySelectorAll("[data-b]").forEach(function(el){ var v = VALUES[el.dataset.b]; if(v !== undefined) el.textContent = v; });
+
+/* 금액별 미리보기 카드 */
+var capAt = Math.ceil(BENEFIT.cap * 100 / BENEFIT.rate);
+var rows = [BENEFIT.min, Math.round((BENEFIT.min + capAt) / 2 / 1000) * 1000, capAt + 10000];
+document.getElementById("calc").innerHTML = rows.map(function(p){
+  var o = off(p), isMax = o === BENEFIT.cap;
+  return '<div' + (isMax ? ' class="max"' : '') + '><span><small>주문금액 ' + won(p) + '원</small><b>' + (isMax ? '최대 할인 적용' : BENEFIT.rate + '% 할인') + '</b></span><strong>-' + won(o) + '원</strong></div>';
+}).join("");
+
+/* ===== 유입 채널 UTM 유지 (이벤트 배너 / 앱 푸시 구분) ===== */
+function withUtm(url){
+  var src = new URLSearchParams(location.search), out = new URL(url), keys = ["utm_source","utm_medium","utm_campaign","utm_content"];
+  keys.forEach(function(k){ if(src.get(k)) out.searchParams.set(k, src.get(k)); });
+  if(!src.get("utm_campaign")) out.searchParams.set("utm_campaign","reorder_" + BENEFIT.rate);
+  return out.toString();
+}
+function detectOS(){
+  var ua = navigator.userAgent;
+  if(/android/i.test(ua)) return "android";
+  if(/iphone|ipad|ipod/i.test(ua)) return "ios";
+  return "desktop";
+}
+document.querySelectorAll(".js-cta").forEach(function(a){
+  var os = a.dataset.os || detectOS();
+  a.href = withUtm(STORE[os]);
+  a.addEventListener("click", function(){
+    // TODO: 분석 도구 연동 (예: gtag('event','cta_click',{position:a.dataset.pos}))
+    console.log("cta_click", a.dataset.pos, os);
+  });
+});
+
+/* ===== PC 방문자: QR 코드 (휴대폰으로 이어가기) ===== */
+(function(){
+  var box = document.getElementById("qrCode");
+  try{
+    var u = new URL(location.href); u.searchParams.set("utm_medium","qr");
+    var qr = qrcode(0, "M"); qr.addData(u.toString()); qr.make();
+    box.innerHTML = qr.createSvgTag({ cellSize:4, margin:0, scalable:true });
+  }catch(e){ document.getElementById("qrBox").style.display = "none"; }
+})();
+
+/* ===== 카운트다운: 앱에서 주문일을 넘겨준 경우에만 표시 (?ordered=YYYY-MM-DD) =====
+   혜택 기준이 '주문일로부터 14일'이므로, 방문 시점 기준의 가짜 타이머는 쓰지 않습니다. */
+(function(){
+  var o = new URLSearchParams(location.search).get("ordered");
+  var t = o && Date.parse(o + "T00:00:00+09:00");
+  if(!t) return;
+  var end = t + BENEFIT.days * 864e5;
+  if(end <= Date.now()) return;
+  document.getElementById("cdWrap").hidden = false;
+  function pad(n){ return String(n).padStart(2,"0"); }
+  function tick(){
+    var s = Math.max(0, Math.floor((end - Date.now())/1000));
+    document.getElementById("cd-d").textContent = pad(Math.floor(s/86400));
+    document.getElementById("cd-h").textContent = pad(Math.floor(s%86400/3600));
+    document.getElementById("cd-m").textContent = pad(Math.floor(s%3600/60));
+    document.getElementById("cd-s").textContent = pad(s%60);
+  }
+  tick(); setInterval(tick, 1000);
+})();
+
+/* 하단 고정 바: 히어로 CTA와 마지막 CTA가 보이는 동안은 숨겨 중복 방지 */
+(function(){
+  var bar = document.getElementById("sticky");
+  if(!("IntersectionObserver" in window)) return;
+  var seen = new Set();
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ e.isIntersecting ? seen.add(e.target) : seen.delete(e.target); });
+    bar.classList.toggle("hide", seen.size > 0);
+  });
+  document.querySelectorAll('.js-cta[data-pos="hero"],.js-cta[data-pos="final"]').forEach(function(el){ io.observe(el); });
+})();
+</script>
+</body>
+</html>
